@@ -1,1 +1,0 @@
-const FP = require('FingerprintJS');
