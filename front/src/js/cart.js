@@ -1,5 +1,4 @@
 export let cartload = [];
-let timer;
 
 function itemToHTML(item) {
     let tag = document.createElement("div");
@@ -18,14 +17,44 @@ function itemToHTML(item) {
     descCont.innerHTML = "<div class='cart-item-desc-text'>"
                         + item.name
                         + "</div>"
-                        + "<div class='cart-item-desc-text'>"
+                        + "<div class='cart-item-desc-text' style='color: #545454'>"
                         + item.price
                         + "</div>";
+
+    let counterTag = document.createElement("div");
+    counterTag.className = "cart-item-counter";
+    let minusButton = document.createElement("div");
+    minusButton.className = "cart-item-minus";
+    minusButton.innerHTML = "-";
+    let plusButton = document.createElement("div");
+    plusButton.className = "cart-item-plus";
+    plusButton.innerHTML = "+";
+    let numberTag = document.createElement("div");
+    numberTag.innerHTML = item.count;
+    minusButton.itemID = item.id;
+    plusButton.itemID = item.id;
+    minusButton.addEventListener("click", function (event) {
+        //Уменьшаем колво
+        let button = event.target;
+        let index = cartload.findIndex(item => item.id === button.itemID);
+        cartload[index].count--;
+        renderCart();
+    });
+
+    plusButton.addEventListener("click", function (event) {
+        //Увеличиваем колво
+        let button = event.target;
+        let index = cartload.findIndex(item => item.id === button.itemID);
+        cartload[index].count++;
+        renderCart();
+    });
+
+    counterTag.append(minusButton, numberTag, plusButton);
 
     let closeTag = document.createElement("div");
     closeTag.className = "cart-item-delete";
     closeTag.itemID = item.id;
-    closeTag.innerHTML = "X";
+    closeTag.innerHTML = "×";
     closeTag.state = -1;
     closeTag.timer = 0;
 
@@ -48,13 +77,13 @@ function itemToHTML(item) {
             }, 1000);
         } else {
             button.state = -1;
-            button.innerHTML = "X";
+            button.innerHTML = "×";
             clearInterval(button.timer);
         }
 
     });
 
-    tag.append(imgCont, descCont, closeTag);
+    tag.append(imgCont, descCont, counterTag, closeTag);
 
     return tag;
 }
@@ -66,13 +95,40 @@ function destroyItem(index) {
 
 
 export function renderCart() {
-    let list = document.querySelector(".cart-list");
+    if (cartload.length === 0) {
+        document.querySelector(".cart-header").innerHTML = "В корзине пусто(";
+    }
 
+    let list = document.querySelector(".cart-list");
+    let sum = 0;
     list.innerHTML = "";
+
+
+    document.cookie = "cartload=" + JSON.stringify(cartload);
+    console.log(document.cookie);
 
     cartload.forEach(item => {
         let tag = itemToHTML(item);
+        sum += item.price * item.count;
 
         list.append(tag);
-    })
+    });
+
+    document.querySelector(".cart-sum").innerHTML = "Итого:" + sum;
+}
+
+
+
+
+
+
+
+
+
+
+export function getCookie(name) {
+    let matches = document.cookie.match(new RegExp(
+        "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+    ));
+    return matches ? decodeURIComponent(matches[1]) : undefined;
 }
