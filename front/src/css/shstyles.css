@@ -19,15 +19,29 @@ justify-content: space-around;
     padding: 0 15px;
 
 }
-.lot_button{
-
+.purple_button{
+border: 0;
+background:#6A5ACD;
 margin-right: 20px;
     float: left;
     border-radius: 5px;
     border-width: 1px;
     height: 30px;
     width: 100px;
+    transition: .3s;
 
+}
+.white_button{
+    margin-right: 20px;
+        float: left;
+        border-radius: 5px;
+        border-width: 1px;
+        height: 30px;
+        width: 100px;
+        transition: .3s;
+        &:hover{
+
+        }
 }
 .name_text{
     font-weight: bold;
