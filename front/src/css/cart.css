@@ -94,6 +94,7 @@ body {
     background-color: #4f4f4f;
     border: 0;
     border-radius: 50%;
+    cursor: pointer;
 }
 
 .cart-item-delete {
@@ -103,6 +104,7 @@ body {
     width: 18px;
     border: 2px solid #4f4f4f;
     border-radius: 50%;
+    cursor: pointer;
 }
 
 .cart-form{
@@ -132,6 +134,7 @@ body {
     color: white;
     border: 0;
     border-radius: 3px;
+    cursor: pointer;
 }
 
 .cart-icon {
