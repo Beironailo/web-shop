@@ -70,6 +70,10 @@ body {
     margin-bottom: 20px;
 }
 
+.inspect-desc-price::after {
+    content: " ₽";
+}
+
 .inspect-in-button {
     height: auto;
     display: flex;
