@@ -20,6 +20,10 @@
     text-decoration: none;
     color: black;
 }
+.lot_img{
+    height: 65%;
+    background: #00FFFF;
+}
 .lot_name{
     display: inline-block;
     background: #ffff;
