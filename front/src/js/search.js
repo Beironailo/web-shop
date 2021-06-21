@@ -21,4 +21,4 @@ document.querySelector(".search-submit")
         if (text) {
             //Запрашиваем выборку
         }
-    })
+    });
