@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'compressor',
     'compressor_toolkit',
     'mainapp',
+    'phonenumber_field',
 ]
 
 MIDDLEWARE = [
