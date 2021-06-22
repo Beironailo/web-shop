@@ -1,0 +1,96 @@
+* {
+    margin: 0;
+    padding: 0;
+
+    font-family: Arial, sans-serif;
+    scroll-behavior: smooth;
+
+}
+
+.name_container{
+    justify-content: space-between;
+
+
+    padding: 0 20%;
+    display: flex;
+    font-weight: bold;
+    font-size: 22px;
+}
+.name_container>a{
+    text-decoration: none;
+    color: black;
+}
+.lot_img{
+    height: 65%;
+    background: #00FFFF;
+}
+.lot_name{
+    display: inline-block;
+    background: #ffff;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 65px;
+    padding: 0 30px;
+    font-weight: bold;
+    font-size: 22px;
+}
+.hr_lot{
+    margin: 50px;
+    border: none;
+    background-color: blue;
+    color: blue;
+    height: 2px;
+}
+.lot_container{
+    margin: 60px 0;
+    display: flex;
+    justify-content: space-around;
+}
+.lot{
+display: flex;
+flex-direction: column;
+justify-content: space-around;
+    height: 400px;
+    width: 350px;
+background-color: #00BFFF;
+    padding: 0 15px;
+
+}
+.purple_button{
+border: 0;
+background:#6A5ACD;
+margin: 25px 10px 10px 0;
+    float: left;
+    border-radius: 5px;
+    border-width: 1px;
+    height: 40px;
+    width: 100px;
+    transition: .3s;
+    font: white;
+    font-weight: bold;
+
+}
+.purple_button:hover{
+background:#9370DB;
+}
+
+.white_button{
+    margin: 25px 10px 10px 0;
+        float: left;
+        border-radius: 5px;
+        border-width: 1px;
+        height: 40px;
+        width: 100px;
+        transition: .3s;
+font: black;
+font-weight: bold;
+}
+.white_button:hover{
+background: #C9C9C9;
+}
+
+.name_text{
+    font-weight: bold;
+    font-size: 20px;
+}
