@@ -1,3 +1,5 @@
+import {getItemInfo} from "./cart.js";
+
 function initInspection(itemId) {
     let itemName = document.querySelector(".class-desc-name");
     let itemDesc = document.querySelector(".inspect-desc-text");
@@ -8,11 +10,12 @@ function initInspection(itemId) {
 }
 
 document.querySelector(".inspect-tocart")
-    .addEventListener("click", function (event) {
+    .addEventListener("click", async function (event) {
         event.preventDefault();
-
+        let button = event.target;
+        console.log(button);
         //Добавить в корзину
-        console.log("Добавили в корзину")
+        await getItemInfo(12);
     });
 
 document.querySelector(".inspect-cont")

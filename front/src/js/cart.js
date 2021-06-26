@@ -30,14 +30,14 @@ function itemToHTML(item) {
     plusButton.className = "cart-item-plus";
     plusButton.innerHTML = "+";
     let numberTag = document.createElement("div");
-    numberTag.innerHTML = item.count;
+    numberTag.innerHTML = item.quantity;
     minusButton.itemID = item.id;
     plusButton.itemID = item.id;
     minusButton.addEventListener("click", function (event) {
         //Уменьшаем колво
         let button = event.target;
         let index = cartload.findIndex(item => item.id === button.itemID);
-        cartload[index].count--;
+        cartload[index].quantity--;
         renderCart();
     });
 
@@ -45,7 +45,7 @@ function itemToHTML(item) {
         //Увеличиваем колво
         let button = event.target;
         let index = cartload.findIndex(item => item.id === button.itemID);
-        cartload[index].count++;
+        cartload[index].quantity++;
         renderCart();
     });
 
@@ -103,16 +103,36 @@ export function renderCart() {
     let sum = 0;
     list.innerHTML = "";
 
-
-    document.cookie = "cartload=" + JSON.stringify(cartload);
-    console.log(document.cookie);
-
     cartload.forEach(item => {
         let tag = itemToHTML(item);
-        sum += item.price * item.count;
+        sum += item.price * item.quantity;
 
         list.append(tag);
     });
 
     document.querySelector(".cart-sum").innerHTML = "Итого:" + sum;
+}
+
+export async function getItemInfo(id) {
+    let url = '/itemInfo';
+
+    let response = await fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json; charset=utf-8'
+        },
+        body: JSON.stringify({
+            id: id
+        })
+    });
+
+    if (response.ok) {
+        let info = await response.json();
+
+        console.log(info);
+    }
+    else {
+        console.log("Ошибка при запросе:" + response.status);
+    }
+
 }

@@ -19,6 +19,6 @@ document.querySelector(".search-submit")
         bar.value = "";
 
         if (text) {
-            //Запрашиваем выборку
+
         }
     });
