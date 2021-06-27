@@ -3,6 +3,7 @@ function addlot(param){
   let lotContainer=document.querySelector(param.container);
   let lot=document.createElement('div');
   lot.ClassName="lot";
+  lot.id=param.id;
   let imgTag="<img src= \""+ param.src +"\"class=\"lot_img\">";
   let nameTag = "<div class=\"name_text\">" +param.name +"</div>";
   let price = "<div >"+param.price+"</div>";
