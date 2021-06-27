@@ -1,14 +1,186 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- LINK -->
+
+    <link rel="stylesheet" href="{% static 'src/css/cart.css' %">
+    <link rel="stylesheet" href="{% static 'src/css/header_footer.css' %}">
+    <link rel="stylesheet" href="{% static 'src/css/inspect.css' %}">
+    <link rel="stylesheet" href="{% static 'src/css/index.css' %}">
+    <link rel="stylesheet" href="{% static 'src/css/shstyles.css' %}">
+
+    <!-- /LINK -->
+
+
+    <title>Webshop</title>
 </head>
 <body>
-<form method="post">
-    {% csrf_token %}
-    {{form.as_p}}
-    <button type="submit">Send</button>
-</form>
+
+
+    <!-- CART -->
+
+    <div class="cart-icon">
+        <div>
+            <svg height="512pt" viewBox="0 -31 512.00026 512" width="512pt" xmlns="http://www.w3.org/2000/svg">
+                <path fill="#fff" d="m164.960938 300.003906h.023437c.019531 0 .039063-.003906.058594-.003906h271.957031c6.695312 0 12.582031-4.441406
+                        14.421875-10.878906l60-210c1.292969-4.527344.386719-9.394532-2.445313-13.152344-2.835937-3.757812-7.269531-5.96875-11.976562-5.96875h-366.632812l-10.722657-48.253906c-1.527343-6.863282-7.613281-11.746094-14.644531-11.746094h-90c-8.285156
+                        0-15 6.714844-15 15s6.714844 15 15 15h77.96875c1.898438 8.550781 51.3125 230.917969 54.15625 243.710938-15.941406 6.929687-27.125 22.824218-27.125 41.289062 0 24.8125 20.1875 45 45 45h272c8.285156 0 15-6.714844
+                        15-15s-6.714844-15-15-15h-272c-8.269531 0-15-6.730469-15-15 0-8.257812 6.707031-14.976562 14.960938-14.996094zm312.152343-210.003906-51.429687 180h-248.652344l-40-180zm0 0"/>
+                <path fill="#fff" d="m150 405c0 24.8125 20.1875 45 45 45s45-20.1875 45-45-20.1875-45-45-45-45 20.1875-45 45zm45-15c8.269531 0 15 6.730469 15 15s-6.730469 15-15 15-15-6.730469-15-15 6.730469-15 15-15zm0 0"/>
+                <path fill="#fff" d="m362 405c0 24.8125 20.1875 45 45 45s45-20.1875 45-45-20.1875-45-45-45-45 20.1875-45 45zm45-15c8.269531 0 15 6.730469 15 15s-6.730469 15-15 15-15-6.730469-15-15 6.730469-15 15-15zm0 0"/>
+            </svg>
+        </div>
+    </div>
+    <div class="cart-cont">
+        <div class="cart">
+            <div class="cart-header">Ваш заказ:</div>
+            <div class="cart-list">
+
+            </div>
+            <div class="cart-sum"></div>
+            <div class="cart-form">
+                <form action="" id="order-form">
+                    <div><input type="text" name="name" placeholder="Ваше имя" class="form-input"></div>
+                    <div><input type="email" name="email" placeholder="Ваш Email" class="form-input"></div>
+                    <div><input type="tel" name="phone" placeholder="+79999999999" class="form-input"></div>
+                    <div><input type="submit" class="submit-button"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- /CART -->
+
+    <!-- INSPECT -->
+
+    <div class="inspect-cont">
+        <div class="inspect">
+            <div class="inspect-img">
+                <img id="item-img" src="https://sklad.freeimg.ru/rsynced_images/chessboard-153303_1280.png" alt="">
+            </div>
+            <div class="inspect-desc">
+                <div class="inspect-desc-name">Lorem</div>
+                <div class="inspect-desc-text">Lorem ipsum dolor sit amet,
+                    consectetur adipisicing elit. Aliquam odio quae soluta!
+                    Ad aspernatur fugiat ipsum iure quae, repudiandae voluptas.
+                    Aperiam at consectetur cumque fugiat illum impedit possimus similique sit.
+                </div>
+                <div class="inspect-desc-price">99999</div>
+                <div class="inspect-in-button">
+                    <input type="submit" class="inspect-tocart" value="В корзину" inspectItemId="12">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- /INSPECT -->
+
+    <!-- HEADER -->
+
+    <div class="header">
+        <div class="shop-name">
+            <a href="">
+                <img src="https://sklad.freeimg.ru/rsynced_images/chessboard-153303_1280.png" class="header-img" alt="">
+            </a>
+        </div>
+        <div class="search-cont">
+            <div>
+                <input type="text" class="search-bar" autocomplete="off">
+                <input type="submit" class="search-submit" value="Искать">
+            </div>
+        </div>
+    </div>
+
+    <!-- /HEADER -->
+
+    <!-- CATALOG -->
+
+    <div class="catalog-cont">
+        <div class="name_container">
+            <a href="#accessories-header">Аксессуары</a>
+            <a href="#computers-header">Компьютеры</a>
+            <a href="#telephones-header">Телефоны</a>
+        </div>
+        <div class="results-cont" style="display: none">
+            <div class="lot_name" id="results-header">
+                Результаты поиска
+            </div>
+            <hr class="hr_lot">
+            <div class="lot_container" id="results">
+
+            </div>
+        </div>
+
+        <div class="lot_name" id="accessories-header">
+            Аксессуары
+        </div>
+        <hr class="hr_lot">
+        <div class="lot_container" id="accessories">
+
+        </div>
+
+
+        <div class="lot_name" id="computers-header">
+            Компьютеры
+        </div>
+        <hr class="hr_lot">
+        <div class="lot_container" id="computers">
+
+        </div>
+
+
+        <div class="lot_name" id="telephones-header">
+            Телефоны
+        </div>
+        <hr class="hr_lot">
+        <div class="lot_container" id="telephones">
+
+        </div>
+    </div>
+
+    <!-- /CATALOG -->
+
+    <!-- QUESTIONFORM -->
+
+    <div class="lot_name">
+        Форма заказа
+    </div>
+    <hr class="hr_lot">
+    <!-- title -->
+    <div class="form_container">
+        <form action="">
+            <input type="text" name="email" value="" placeholder="Ваш Email">
+            <input type="text" name="name" value="" placeholder="Ваше Имя">
+            <input type="text" name="text" value="" style="height:120px;" placeholder="Вы не нашли то, что нужно ?">
+            <input type="submit" class="form_button" name="button" value="Отправить">
+        </form>
+    </div>
+
+    <!-- /QUESTIONFORM -->
+
+    <!-- FOOTER -->
+
+    <div class="footer"></div>
+
+    <!-- /FOOTER -->
+
+    <!-- TEMP -->
+
+    <!-- /TEMP -->
+
+    <!-- SCRIPT -->
+
+    <script type="module" src="{% static 'src/js/inspect.js' %}"></script>
+    <script type="module" src="{% static 'src/js/loader.js' %}"></script>
+    <script type="module" src="{% static 'src/js/cart_listeners.js' %}"></script>
+    <script type="module" src="{% static 'src/js/search.js' %}"></script>
+
+    <!-- /SCRIPT -->
+
 </body>
 </html>
