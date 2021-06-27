@@ -13,7 +13,10 @@ app.get('/', (req, res) => {
 
 app.post('/sendOrder', (req, res) => {
    console.log(req.body);
-   res.sendStatus(200);
+   res.send({
+       code: 200,
+       message: 'OK'
+    });
 });
 
 app.post('/itemInfo', (req, res) => {
@@ -61,7 +64,7 @@ app.post('/search', (req, res) => {
             price: 39999
         }
     ];
-
+    console.log(JSON.stringify(result));
     res.send(JSON.stringify(result));
 });
 

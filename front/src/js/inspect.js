@@ -35,11 +35,6 @@ document.querySelector(".inspect-tocart")
         button.style.backgroundColor = "#1b1b1b";
     });
 
-document.querySelector(".test-button")
-    .addEventListener("click", async function () {
-        await renderInspect(3);
-    });
-
 async function renderInspect(id) {
     let info = await getItemInfo(id);
 
