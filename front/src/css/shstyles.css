@@ -94,24 +94,17 @@
     display:flex;
     flex-direction:column;
     align-items: center;
-
 }
-.form_container>input{
-    display: block;
-    color: #a9a9a9;
-    font-weight: 400;
 
-    height: 50px;
-    margin: 15px;
-    width: 45%;
-}
 .form_button{
-    height: 50px;
-    width: 200px;
-    border-radius: 17px;
-    border: none;
-    background-color: black;
+    width: 90%;
+    margin: 10px;
+    padding: 7px;
+    height: 40px;
+    background-color: #1b1b1b;
     color: white;
-    margin: 10px ;
+    border: 0;
+    border-radius: 3px;
+    cursor: pointer;
 
 }

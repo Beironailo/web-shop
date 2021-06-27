@@ -92,13 +92,15 @@ document.querySelector("#order-form")
             console.log(order);
 
             let url = "/sendOrder";
+            let token = document.querySelector("input[name=csrfmiddlewaretoken]").value;
 
             console.log(JSON.stringify(order));
 
             let response = await fetch(url, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json; charset=utf-8'
+                    'Content-Type': 'application/json; charset=utf-8',
+                    'csrfmiddlewaretoken': token
                 },
                 body: JSON.stringify(order)
             });
