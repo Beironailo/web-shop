@@ -6,6 +6,33 @@ const app = express();
 app.use(express.static(__dirname + '/front'));
 app.use(express.json());
 
+let catalog = [
+    {
+        name: 'acc1',
+        id: (Math.random() * 1000).toFixed(),
+        image: 'https://sklad.freeimg.ru/rsynced_images/chessboard-153303_1280.png',
+        description: 'sugar',
+        category: 'accessories',
+        price: 9999
+    },
+    {
+        name: 'comp1',
+        id: (Math.random() * 1000).toFixed(),
+        image: 'https://sklad.freeimg.ru/rsynced_images/chessboard-153303_1280.png',
+        description: 'sugar2',
+        category: 'computers',
+        price: 192999
+    },
+    {
+        name: 'acc2',
+        id: (Math.random() * 1000).toFixed(),
+        image: 'https://sklad.freeimg.ru/rsynced_images/chessboard-153303_1280.png',
+        description: 'sugar3',
+        category: 'accessories',
+        price: 339999
+    }
+];
+
 app.get('/', (req, res) => {
     console.log('AAA');
     res.sendFile(path.join(__dirname, '/front/cart.html'));
@@ -20,50 +47,27 @@ app.post('/sendOrder', (req, res) => {
 });
 
 app.post('/itemInfo', (req, res) => {
-    let info = {
-        name: 'auf',
-        id: req.body.id,
-        image: 'https://sklad.freeimg.ru/rsynced_images/chessboard-153303_1280.png',
-        description: 'sugar',
-        category: 'acc',
-        price: 19999
-    }
+
+    let info = catalog.find(item => item.id === req.body.id);
 
     console.log(info);
 
     res.send(JSON.stringify(info));
 });
 
+app.get('/getCatalog', (req, res) => {
+
+    console.log(JSON.stringify(catalog));
+    res.send(JSON.stringify(catalog));
+
+});
+
 app.post('/search', (req, res) => {
     let search = req.body.search;
     console.log(search);
 
-    let result = [
-        {
-            name: 'auf',
-            id: (Math.random() * 1000).toFixed(),
-            image: 'https://sklad.freeimg.ru/rsynced_images/chessboard-153303_1280.png',
-            description: 'sugar',
-            category: 'acc',
-            price: 19999
-        },
-        {
-            name: 'auf2',
-            id: (Math.random() * 1000).toFixed(),
-            image: 'https://sklad.freeimg.ru/rsynced_images/chessboard-153303_1280.png',
-            description: 'sugar2',
-            category: 'bcc',
-            price: 29999
-        },
-        {
-            name: 'auf3',
-            id: (Math.random() * 1000).toFixed(),
-            image: 'https://sklad.freeimg.ru/rsynced_images/chessboard-153303_1280.png',
-            description: 'sugar3',
-            category: 'acc',
-            price: 39999
-        }
-    ];
+    let result = catalog.filter(item => item.name.includes(search));
+
     console.log(JSON.stringify(result));
     res.send(JSON.stringify(result));
 });

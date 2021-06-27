@@ -1,3 +1,5 @@
+import {addLot} from "./catalog.js";
+
 document.querySelector(".search-submit")
     .addEventListener("mouseover", function (event) {
         let target = event.target;
@@ -32,11 +34,24 @@ document.querySelector(".search-submit")
             });
 
             if (response.ok) {
-                console.log(await response.json());
+                let results = await response.json();
+                console.log(results);
                 //Отображаем список
+                renderSearchResult(results);
             }
             else {
                 console.log("Ошибка при запросе:" + response.status);
             }
         }
     });
+
+function renderSearchResult(items) {
+    let cont = document.querySelector(".results-cont");
+
+    document.querySelector("#results").innerHTML = "";
+    items.forEach(item => {
+        addLot(item, 'results');
+    });
+
+    cont.style.display = "";
+}

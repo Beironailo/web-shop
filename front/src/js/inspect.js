@@ -35,7 +35,7 @@ document.querySelector(".inspect-tocart")
         button.style.backgroundColor = "#1b1b1b";
     });
 
-async function renderInspect(id) {
+export async function renderInspect(id) {
     let info = await getItemInfo(id);
 
     let container = document.querySelector(".inspect-cont");

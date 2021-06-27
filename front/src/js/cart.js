@@ -4,6 +4,20 @@ export function setCartload(arr) {
     cartload = arr;
 }
 
+export function fetchCartload() {
+    if(localStorage.getItem("cartload")) {
+
+        try {
+
+            let store = JSON.parse(localStorage.getItem("cartload"));
+
+            setCartload(store);
+        } catch (e) {
+            console.log(e.message);
+        }
+    }
+}
+
 function itemToHTML(item) {
     let tag = document.createElement("div");
     tag.className = "cart-list-item";
