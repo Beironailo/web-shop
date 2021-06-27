@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post">
+    {%csrf_token%}
+    <input name="search">
+    <button type="submit">POST</button>
+
+</form>
+{% for product in products %}
+<div>
+    <h3>{{product.name}}</h3>
+    <p>{{product.price}}</p>
+    <p>{{product.description}}</p>
+    <img src="{{product.image}}" height="200">
+</div>
+{% endfor %}
+</body>
+
+</html>

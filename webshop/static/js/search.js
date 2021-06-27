@@ -1,5 +1,5 @@
 import {addLot} from "./catalog.js";
-
+console.log("search.js");
 document.querySelector(".search-submit")
     .addEventListener("mouseover", function (event) {
         let target = event.target;
@@ -21,12 +21,14 @@ document.querySelector(".search-submit")
         bar.value = "";
 
         if (text) {
-            let url = '/search';
-
+            let url = 'products/search';
+            let token = document.querySelector("input[name=csrfmiddlewaretoken]").value;
+            console.log(token);
             let response = await fetch(url, {
                 method: 'POST',
                 headers: {
-                    'Content-Type':  'application/json; charset=utf-8'
+                    'Content-Type':  'application/json; charset=utf-8',
+                    'csrfmiddlewaretoken': token
                 },
                 body: JSON.stringify({
                     search: text

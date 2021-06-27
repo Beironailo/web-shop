@@ -1,4 +1,6 @@
 <!doctype html>
+{% load static %}
+{% load compress %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,12 +9,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <!-- LINK -->
-
-    <link rel="stylesheet" href="{% static 'src/css/cart.css' %">
-    <link rel="stylesheet" href="{% static 'src/css/header_footer.css' %}">
-    <link rel="stylesheet" href="{% static 'src/css/inspect.css' %}">
-    <link rel="stylesheet" href="{% static 'src/css/index.css' %}">
-    <link rel="stylesheet" href="{% static 'src/css/shstyles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/cart.css' %}">
+    <link rel="stylesheet" href="{% static 'css/header_footer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/inspect.css' %}">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <link rel="stylesheet" href="{% static 'css/shstyles.css' %}">
 
     <!-- /LINK -->
 
@@ -90,6 +91,7 @@
         </div>
         <div class="search-cont">
             <div>
+                {% csrf_token %}
                 <input type="text" class="search-bar" autocomplete="off">
                 <input type="submit" class="search-submit" value="Искать">
             </div>
@@ -175,10 +177,10 @@
 
     <!-- SCRIPT -->
 
-    <script type="module" src="{% static 'src/js/inspect.js' %}"></script>
-    <script type="module" src="{% static 'src/js/loader.js' %}"></script>
-    <script type="module" src="{% static 'src/js/cart_listeners.js' %}"></script>
-    <script type="module" src="{% static 'src/js/search.js' %}"></script>
+    <script type="module" src="{% static 'js/cart_listeners.js' %}"></script>
+    <script type="module" src="{% static 'js/inspect.js' %}"></script>
+    <script type="module" src="{% static 'js/loader.js' %}"></script>
+    <script type="module" src="{% static 'js/search.js' %}"></script>
 
     <!-- /SCRIPT -->
 

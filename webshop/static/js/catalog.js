@@ -55,7 +55,7 @@ export function addLot(param, category) {
 }
 
 export async function getCatalog() {
-    let url = "/getCatalog";
+    let url = "products/all";
 
     let response = await fetch(url, {
         method: 'GET'

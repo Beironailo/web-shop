@@ -1,5 +1,5 @@
 import {addToCart, getItemInfo} from "./cart.js";
-
+console.log('inspect.js');
 
 document.querySelector(".inspect-tocart")
     .addEventListener("click", async function (event) {

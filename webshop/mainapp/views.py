@@ -1,4 +1,5 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render
+from django.http import JsonResponse, HttpResponse
 from . import models
 import json
 from .forms import QuestionForm, OrderForm
@@ -47,3 +48,30 @@ class OrderView(View):
                 Order.objects.create(user_id=user.id, number="#1", description="pass")
 
         return render(request, 'order.html', {'form': form})
+
+
+class ProductsView(View):
+    products = models.Product.objects.all()
+
+    def get(self, request):
+        to_send = []
+        for product in self.products:
+            to_send.append(json.loads(product.description))
+        to_send = json.dumps(to_send, ensure_ascii=False)
+        return HttpResponse(to_send, content_type="application/json")
+
+
+class SearchView(View):
+    products = models.Product.objects.all()
+
+    def get(self, request):
+        return render(request, 'products.html')
+
+    def post(self, request):
+        to_send = []
+        to_find = request.POST['search']
+        for product in self.products:
+            if to_find.lower() in product.name.lower():
+                to_send.append(json.loads(product.description))
+        to_send = json.dumps(to_send, ensure_ascii=False)
+        return HttpResponse(to_send, content_type="application/json")
