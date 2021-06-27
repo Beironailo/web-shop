@@ -1,5 +1,9 @@
 export let cartload = [];
 
+export function setCartload(arr) {
+    cartload = arr;
+}
+
 function itemToHTML(item) {
     let tag = document.createElement("div");
     tag.className = "cart-list-item";
@@ -38,6 +42,8 @@ function itemToHTML(item) {
         let button = event.target;
         let index = cartload.findIndex(item => item.id === button.itemID);
         cartload[index].quantity--;
+
+        localStorage.setItem("cartload", JSON.stringify(cartload));
         renderCart();
     });
 
@@ -46,6 +52,8 @@ function itemToHTML(item) {
         let button = event.target;
         let index = cartload.findIndex(item => item.id === button.itemID);
         cartload[index].quantity++;
+
+        localStorage.setItem("cartload", JSON.stringify(cartload));
         renderCart();
     });
 
@@ -90,6 +98,8 @@ function itemToHTML(item) {
 
 function destroyItem(index) {
     cartload.splice(index, 1);
+
+    localStorage.setItem("cartload", JSON.stringify(cartload));
     renderCart();
 }
 
@@ -146,6 +156,8 @@ export async function addToCart(id) {
 
     info.quantity = 1;
     cartload.push(info);
+
+    localStorage.setItem("cartload", JSON.stringify(cartload));
 
     renderCart();
 }

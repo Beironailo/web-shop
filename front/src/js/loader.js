@@ -1,6 +1,8 @@
-import * as Cart from "./cart.js"
+import {cartload, renderCart, setCartload} from "./cart.js";
 
-    Cart.cartload.push({
+if(!localStorage.getItem("cartload")) {
+
+    cartload.push({
         id: "111",
         quantity: 1,
         name: "Name",
@@ -9,7 +11,7 @@ import * as Cart from "./cart.js"
         description: "lorem",
         category: 'A'
     });
-    Cart.cartload.push({
+    cartload.push({
         id: "112",
         quantity: 1,
         name: "Name2",
@@ -18,7 +20,7 @@ import * as Cart from "./cart.js"
         description: "lorem",
         category: 'B'
     });
-    Cart.cartload.push({
+    cartload.push({
         id: "113",
         quantity: 1,
         name: "Name3",
@@ -28,4 +30,16 @@ import * as Cart from "./cart.js"
         category: 'A'
     });
 
-Cart.renderCart();
+} else {
+
+    try {
+
+        let store = JSON.parse(localStorage.getItem("cartload"));
+
+        setCartload(store);
+    } catch (e) {
+        console.log(e.message);
+    }
+}
+
+renderCart();
