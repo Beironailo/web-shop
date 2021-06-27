@@ -6,7 +6,8 @@ import * as Cart from "./cart.js"
         name: "Name",
         image: "https://sklad.freeimg.ru/rsynced_images/chessboard-153303_1280.png",
         price: 17990,
-        desc: "lorem"
+        description: "lorem",
+        category: 'A'
     });
     Cart.cartload.push({
         id: "112",
@@ -14,7 +15,8 @@ import * as Cart from "./cart.js"
         name: "Name2",
         image: "https://sklad.freeimg.ru/rsynced_images/chessboard-153303_1280.png",
         price: 18990,
-        desc: "lorem"
+        description: "lorem",
+        category: 'B'
     });
     Cart.cartload.push({
         id: "113",
@@ -22,7 +24,8 @@ import * as Cart from "./cart.js"
         name: "Name3",
         image: "https://sklad.freeimg.ru/rsynced_images/chessboard-153303_1280.png",
         price: 19990,
-        desc: "lorem"
+        description: "lorem",
+        category: 'A'
     });
 
 Cart.renderCart();

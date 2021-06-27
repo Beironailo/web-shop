@@ -1,21 +1,12 @@
-import {getItemInfo} from "./cart.js";
+import {addToCart, getItemInfo} from "./cart.js";
 
-function initInspection(itemId) {
-    let itemName = document.querySelector(".class-desc-name");
-    let itemDesc = document.querySelector(".inspect-desc-text");
-    let itemImg = document.querySelector("#item-img");
-    let itemPrice = document.querySelector(".inspect-desc-price");
-
-    //Запрашиваем и вставляем инфу о товаре
-}
 
 document.querySelector(".inspect-tocart")
     .addEventListener("click", async function (event) {
         event.preventDefault();
         let button = event.target;
-        console.log(button);
-        //Добавить в корзину
-        await getItemInfo(12);
+
+        await addToCart(3);
     });
 
 document.querySelector(".inspect-cont")
@@ -43,3 +34,26 @@ document.querySelector(".inspect-tocart")
 
         button.style.backgroundColor = "#1b1b1b";
     });
+
+document.querySelector(".test-button")
+    .addEventListener("click", async function () {
+        await renderInspect(3);
+    });
+
+async function renderInspect(id) {
+    let info = await getItemInfo(id);
+
+    let container = document.querySelector(".inspect-cont");
+
+    let imgTag = document.querySelector("#item-img");
+    let nameTag = document.querySelector(".inspect-desc-name");
+    let descTag = document.querySelector(".inspect-desc-text");
+    let priceTag = document.querySelector(".inspect-desc-price");
+
+    imgTag.src = info.image;
+    nameTag.innerHTML = info.name;
+    descTag.innerHTML = info.description;
+    priceTag.innerHTML = info.price;
+
+    container.style.display = 'flex';
+}

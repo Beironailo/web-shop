@@ -112,4 +112,4 @@ document.querySelector("#order-form")
                 console.log("Ошибка при отправлении:" + response.status);
             }
 
-        })
+        });

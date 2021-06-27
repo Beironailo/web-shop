@@ -130,9 +130,22 @@ export async function getItemInfo(id) {
         let info = await response.json();
 
         console.log(info);
+
+        return info;
     }
     else {
         console.log("Ошибка при запросе:" + response.status);
+
+        return undefined;
     }
 
+}
+
+export async function addToCart(id) {
+    let info = await getItemInfo(id);
+
+    info.quantity = 1;
+    cartload.push(info);
+
+    renderCart();
 }
