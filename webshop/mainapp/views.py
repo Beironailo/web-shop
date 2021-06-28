@@ -5,6 +5,7 @@ import json
 from .forms import QuestionForm, OrderForm
 from django.views.generic import View
 from .models import Customer, Order
+from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 
 
@@ -67,7 +68,9 @@ class SearchView(View):
     def get(self, request):
         return render(request, 'products.html')
 
+    @csrf_exempt
     def post(self, request):
+        print(request.headers, request.body)
         to_send = []
         to_find = request.POST['search']
         for product in self.products:
@@ -75,3 +78,33 @@ class SearchView(View):
                 to_send.append(json.loads(product.description))
         to_send = json.dumps(to_send, ensure_ascii=False)
         return HttpResponse(to_send, content_type="application/json")
+
+
+@csrf_exempt
+def search(request):
+    products = models.Product.objects.all()
+
+    if request.method == 'POST':
+        to_send = []
+        context = json.loads(request.body.decode('utf-8'))
+        to_find = context['search']
+        for product in products:
+            if to_find.lower() in product.name.lower():
+                to_send.append(json.loads(product.description))
+        to_send = json.dumps(to_send, ensure_ascii=False)
+        return HttpResponse(to_send, content_type="application/json")
+    return HttpResponse()
+
+
+@csrf_exempt
+def info(request):
+    products = models.Product.objects.all()
+    if request.method == 'POST':
+        context = json.loads(request.body.decode('utf-8'))
+        to_find = context['id']
+        for product in products:
+            description = json.loads(product.description)
+            if description['id'] == to_find:
+                to_send = json.dumps(description, ensure_ascii=False)
+                return HttpResponse(to_send, content_type="application/json")
+    return HttpResponse()

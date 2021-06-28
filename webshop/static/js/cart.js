@@ -138,7 +138,8 @@ export function renderCart() {
 }
 
 export async function getItemInfo(id) {
-    let url = '/itemInfo';
+    let url = 'products/info';
+
 
     let response = await fetch(url, {
         method: 'POST',

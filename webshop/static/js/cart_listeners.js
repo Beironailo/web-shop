@@ -93,7 +93,6 @@ document.querySelector("#order-form")
             console.log(order);
 
             let url = "/sendOrder";
-            let token = document.querySelector("input[name=csrfmiddlewaretoken]").value;
 
             console.log(JSON.stringify(order));
 
@@ -101,7 +100,6 @@ document.querySelector("#order-form")
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json; charset=utf-8',
-                    'csrfmiddlewaretoken': token
                 },
                 body: JSON.stringify(order)
             });
