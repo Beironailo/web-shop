@@ -6,7 +6,7 @@ document.querySelector(".inspect-tocart")
         event.preventDefault();
         let button = event.target;
 
-        await addToCart(3);
+        await addToCart();
     });
 
 document.querySelector(".inspect-cont")
