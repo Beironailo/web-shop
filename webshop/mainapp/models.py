@@ -19,21 +19,21 @@ class Product(models.Model):
         verbose_name_plural = "Товары"
 
 
-class Customer(models.Model):
-    """Пользователи"""
-    name = models.CharField(max_length=255, verbose_name="Имя")
-    phone_number = PhoneNumberField(unique=True, verbose_name="Телефон")
-    email = models.EmailField(verbose_name="E-mail")
-
-    def __str__(self):
-        return str(self.name + " | " + str(self.phone_number))
-
-    def get_context(self):
-        return str(self.name)
-
-    class Meta:
-        verbose_name = "Пользователь"
-        verbose_name_plural = "Пользователи"
+# class Customer(models.Model):
+#     """Пользователи"""
+#     name = models.CharField(max_length=255, verbose_name="Имя")
+#     phone_number = PhoneNumberField(unique=True, verbose_name="Телефон")
+#     email = models.EmailField(verbose_name="E-mail")
+#
+#     def __str__(self):
+#         return str(self.name + " | " + str(self.phone_number))
+#
+#     def get_context(self):
+#         return str(self.name)
+#
+#     class Meta:
+#         verbose_name = "Пользователь"
+#         verbose_name_plural = "Пользователи"
 
 
 class Question(models.Model):
@@ -54,13 +54,15 @@ class Question(models.Model):
 class Order(models.Model):
     """Заказы"""
     number = models.CharField(max_length=255, verbose_name="Номер заказа")
-    user = models.ForeignKey(Customer, on_delete=models.CASCADE, verbose_name="Заказчик")
+    name = models.CharField(max_length=100, verbose_name="От кого", default='Пользователь')
+    email = models.EmailField(verbose_name="E-mail", default='example@example.com')
+    phone_number = PhoneNumberField(verbose_name="Телефон", default='+79999999999')
     description = models.TextField(verbose_name="Описание заказа")
     status = models.BooleanField(default=False, verbose_name="Статус заказа")
     time = models.DateTimeField(verbose_name="Время заказа", default=timezone.now)
 
     def __str__(self):
-        return str(self.number + "(" + self.user.get_context() + ") | " + str(self.time))
+        return str(self.number + "(" + self.name + ") | " + str(self.time))
 
     class Meta:
         verbose_name = "Заказ"

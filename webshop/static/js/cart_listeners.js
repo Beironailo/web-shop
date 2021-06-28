@@ -92,7 +92,7 @@ document.querySelector("#order-form")
 
             console.log(order);
 
-            let url = "/sendOrder";
+            let url = "order/";
 
             console.log(JSON.stringify(order));
 

@@ -6,7 +6,7 @@ document.querySelector(".inspect-tocart")
         event.preventDefault();
         let button = event.target;
 
-        await addToCart(3);
+        await addToCart(button.dataset.itemid);
     });
 
 document.querySelector(".inspect-cont")
@@ -44,11 +44,13 @@ export async function renderInspect(id) {
     let nameTag = document.querySelector(".inspect-desc-name");
     let descTag = document.querySelector(".inspect-desc-text");
     let priceTag = document.querySelector(".inspect-desc-price");
+    let tocartButton = document.querySelector(".inspect-tocart");
 
     imgTag.src = info.image;
     nameTag.innerHTML = info.name;
     descTag.innerHTML = info.description;
     priceTag.innerHTML = info.price;
+    tocartButton.setAttribute("data-itemid", info.id);
 
     container.style.display = 'flex';
 }

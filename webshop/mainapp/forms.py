@@ -6,9 +6,17 @@ from phonenumber_field.widgets import PhoneNumberInternationalFallbackWidget
 
 class QuestionForm(forms.ModelForm):
 
-    email = forms.EmailField(label='Email', widget=forms.EmailInput())
-    name = forms.CharField(label='Ваше Имя', widget=forms.TextInput())
-    question = forms.CharField(label='Ваш вопрос', widget=forms.Textarea())
+    email = forms.EmailField(label='Email', widget=forms.EmailInput(attrs={'type': "text", 'name': "email",
+                                                                           'placeholder': "Ваш Email",
+                                                                           'class': "form-input"}))
+    name = forms.CharField(label='Ваше Имя', widget=forms.TextInput(attrs={'type': "text", 'name': "name",
+                                                                           'placeholder': "Ваше Имя",
+                                                                           'class': "form-input"}))
+    question = forms.CharField(label='Ваш вопрос',
+                               widget=forms.Textarea({'type': "text", 'name': "text",
+                                                       'placeholder': "Вы не нашли то, что нужно?",
+                                                       'class': "form-input",
+                                                       'style': "height:120px;"}))
 
     class Meta:
         model = models.Question

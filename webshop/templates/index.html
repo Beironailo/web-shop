@@ -73,7 +73,7 @@
                 </div>
                 <div class="inspect-desc-price">99999</div>
                 <div class="inspect-in-button">
-                    <input type="submit" class="inspect-tocart" value="В корзину" inspectItemId="12">
+                    <input type="submit" class="inspect-tocart" value="В корзину" data-itemid="">
                 </div>
             </div>
         </div>
@@ -91,7 +91,6 @@
         </div>
         <div class="search-cont">
             <div>
-                {% csrf_token %}
                 <input type="text" class="search-bar" autocomplete="off">
                 <input type="submit" class="search-submit" value="Искать">
             </div>
@@ -155,10 +154,11 @@
     <hr class="hr_lot">
     <!-- title -->
     <div class="form_container">
-        <form action="">
-            <input type="text" name="email" value="" placeholder="Ваш Email" class="form-input">
-            <input type="text" name="name" value="" placeholder="Ваше Имя" class="form-input">
-            <input type="text" name="text" value="" style="height:120px;" placeholder="Вы не нашли то, что нужно ?" class="form-input">
+        <form method="post">
+            {% csrf_token %}
+            {{form.email}}
+            {{form.name}}
+            {{form.question}}
             <input type="submit" class="form_button" name="button" value="Отправить" >
         </form>
     </div>
